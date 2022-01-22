@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import { Container, Row } from 'react-bootstrap';
+import NavBar from "./components/navbar/NavBar";
+import Home from "./pages/Home";
+import {ThemeProvider} from "./ThemeContext";
+import Products from "./pages/Products";
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+} from "react-router-dom";
+
+const routes = [
+  {
+    path: '/',
+    component: <Home/>,
+    exact: true,
+  },
+  {
+    path: '/products',
+    component: <Products/>,
+  }
+]
 
 function App() {
+
+  const getRoutes = () => {
+    return routes.map((route, index) => {
+      return <Route 
+        key={index}
+        exact={route.exact}
+        path={route.path}
+        element={route.component}
+        />
+    })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider>
+      <Router>
+        <NavBar/>
+        <Container>
+          <Row className="mt-5">
+            <Routes>
+              {getRoutes()}
+            </Routes>
+          </Row>
+        </Container>
+      </Router>
+    </ThemeProvider>
   );
 }
 
