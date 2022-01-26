@@ -5,17 +5,13 @@ function SortBy(props) {
     const {selectedSortBy, setSelectedSortBy} = useProduct();
     const options = [
         {
-            value: "popularity.desc",
-            title: "Най-популярни",
+            value: "asc",
+            title: "Възходящо",
         },
         {
-            value: "vote_average.desc",
-            title: "С най-висок рейтинг",
-        },
-        {
-            value: "release_date.desc",
-            title: "Най-скорошни",
-        },
+            value: "desc",
+            title: "Низходящо",
+        }
     ]
 
     function getOptions() {

@@ -1,47 +1,23 @@
 import { Card, Form, Button } from "react-bootstrap";
 import SortBy from "./SortBy";
-import Genres from "./Genres";
-import {useEffect} from "react";
+import Category from "./Category";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getProducts } from "../../redux/actions";
 import { useProduct } from "../products/ProductContext";
 
-const checkboxes = [
-    {
-        value: 28,
-        label: "Екшън",
-        id: "action",
-    },
-    {
-        value: 35,
-        label: "Комедия",
-        id: "comedy",
-    },
-    {
-        value: 12,
-        label: "Приключенски",
-        id: "adventure",
-    },
-    {
-        value: 80,
-        label: "Криминален",
-        id: "criminal",
-    },
-]
-
-
 function Filters(props) {
-    
+
     const dispatch = useDispatch();
 
     const {
         selectedSortBy,
-        checkedState,
+        selectedCategory,
     } = useProduct();
 
     useEffect(() => {
         fetchProducts();
-    },);
+    });
 
     function filtersOnSubmit(e) {
         e.preventDefault();
@@ -49,20 +25,10 @@ function Filters(props) {
     }
 
     function fetchProducts() {
-        dispatch(getProducts('products/category/jewelery', {
-            //"with_genres": getCheckedOptions(),
-            //"sort_by": selectedSortBy,
+        var path = 'products/category/' + selectedCategory;
+        dispatch(getProducts(path, {
+            "sort": selectedSortBy,
         }))
-    }
-
-    function getCheckedOptions() {
-        const checkedOptions = checkedState.reduce((acc, curr, index) => {
-            if(curr){
-                return [...acc, checkboxes[index].value]
-            }
-            return acc
-        },[])
-        return checkedOptions.toString();
     }
 
     return (
@@ -70,10 +36,10 @@ function Filters(props) {
             <Card.Body>
                 <Card.Title className="mb-3">Филтри</Card.Title>
                 <Form onSubmit={filtersOnSubmit}>
-                    <SortBy/>
-                    <Genres checkboxes={checkboxes}/>
-                    <Button 
-                        variant="primary" 
+                    <SortBy />
+                    <Category />
+                    <Button
+                        variant="primary"
                         type="submit">
                         Намери
                     </Button>

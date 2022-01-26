@@ -7,11 +7,11 @@ import {ProductProvider} from "../components/products/ProductContext"
 function Products(props) {
     return (
         <ProductProvider>
-            <Col  md={3}>
-                <Filters/>
-            </Col>
             <Col>
                 <ProductList/>
+            </Col>
+            <Col  md={3}>
+                <Filters/>
             </Col>
         </ProductProvider>
     );

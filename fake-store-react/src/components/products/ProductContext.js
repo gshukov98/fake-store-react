@@ -9,7 +9,9 @@ export function useProduct() {
 }
 export function ProductProvider(props) {
 
-    const [selectedSortBy, setSelectedSortBy] = useState("popularity.desc");
+    const [selectedSortBy, setSelectedSortBy] = useState("asc");
+
+    const [selectedCategory, setSelectedCategory] = useState("electronics");
     
     const [checkedState, setCheckedState] = useState(
         new Array(4).fill(false)
@@ -33,6 +35,8 @@ export function ProductProvider(props) {
         <ProductContext.Provider value={{
                 selectedSortBy, 
                 setSelectedSortBy,
+                selectedCategory, 
+                setSelectedCategory,
                 checkedState,
                 setCheckedState,
                 products,

@@ -1,9 +1,9 @@
+import logo from '../logo.gif'
+
 
 function Home() {
     return (
-        <>
-            Hello
-        </>
+        <img src={logo} alt="loading..." />
     );
 }
 
