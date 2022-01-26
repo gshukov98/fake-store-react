@@ -1,9 +1,19 @@
+import ProductList from "../components/products/ProductList";
+import Filters from "../components/filters/Filters";
+import {Col} from "react-bootstrap";
+import {ProductProvider} from "../components/products/ProductContext"
 
-function Products() {
+
+function Products(props) {
     return (
-        <>
-            Hello Products
-        </>
+        <ProductProvider>
+            <Col  md={3}>
+                <Filters/>
+            </Col>
+            <Col>
+                <ProductList/>
+            </Col>
+        </ProductProvider>
     );
 }
 
